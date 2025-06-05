@@ -1,23 +1,13 @@
 <template>
   <div class="w-full h-full bg-white dark:bg-slate-900 p-4 rounded-lg">
-    <div v-if="file" class="h-full flex justify-center items-center">
-      <div class="w-64 flex flex-col items-center gap-4">
-        <Icon name="svg:microsoft-excel-icon" size="100" />
-        <div>
-          {{ file?.name }}
-        </div>
-        <UButton block :loading="isLoading" @click="onSendFile">
-          อัพโหลด
-        </UButton>
-      </div>
-    </div>
+    <div v-if="file" class="w-full space-y-4 pb-4"></div>
     <div
       v-else
-      class="relative w-full h-full border-2 border-primary bg-primary/20 border-dashed rounded-lg flex justify-center items-center"
+      class="relative w-full h-full border-2 border-primary bg-primary/10 border-dashed rounded-lg flex justify-center items-center text-primary"
     >
       <input
         type="file"
-        :accept="allowedTypes"
+        :accept="allowedTypes.join(',')"
         class="absolute top-0 left-0 right-0 bottom-0 opacity-0"
         @change="onChangeFile"
       />
@@ -31,35 +21,27 @@
   </div>
 </template>
 <script setup lang="ts">
-const toast = useToast();
+interface TypeData {
+  id: number;
+  time_scan: Date;
+}
 
-const file = ref<File>(null);
-const isLoading = ref<boolean>(false);
-
-const allowedTypes = [
+const allowedTypes: string[] = [
   "text/csv",
   "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
   "application/vnd.ms-excel",
 ];
 
-const onChangeFile = (event: Event) => {
-  const target = event.target as HTMLInputElement;
-  const fileObj = target.files?.[0];
+const file = ref<File | null>(null);
+const isLoading = ref<boolean>(false);
+const data = ref<TypeData[]>([]);
 
+const onChangeFile = async (event: Event) => {
+  const target: HTMLInputElement = event.target as HTMLInputElement;
+  const fileObj: File | undefined = target.files?.[0];
+  file.value = fileObj ?? null;
+  data.value = await ReadFileTimeLogs(fileObj as File);
   target.value = "";
-
-  if (!allowedTypes.includes(fileObj.type)) {
-    toast.add({
-      title: "ชนิดของไฟล์ไม่ถูกต้อง",
-      description: "กรุณาเลือกไฟล์ใหม่อีกครั้ง",
-      color: "error",
-      icon: "i-lucide-shield-x",
-    });
-
-    return;
-  }
-
-  file.value = fileObj;
 };
 
 const onSendFile = () => {

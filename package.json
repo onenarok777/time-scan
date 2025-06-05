@@ -11,19 +11,24 @@
   },
   "dependencies": {
     "@nuxt/icon": "^1.13.0",
-    "@nuxt/ui": "^3.1.2",
+    "@nuxtjs/color-mode": "^3.5.2",
     "@pinia/nuxt": "^0.11.0",
+    "@tailwindcss/vite": "^4.1.8",
     "@vueuse/core": "^13.2.0",
+    "dayjs": "^1.11.13",
     "js-cookie": "^3.0.5",
     "nuxt": "^3.17.4",
     "pinia": "^3.0.2",
     "pinia-plugin-persistedstate": "^4.3.0",
+    "tailwindcss": "^4.1.8",
     "typescript": "^5.8.3",
     "vue": "^3.5.14",
     "vue-router": "^4.5.1",
+    "xlsx": "^0.18.5",
     "yup": "^1.6.1"
   },
   "devDependencies": {
-    "@types/js-cookie": "^3.0.6"
+    "@types/js-cookie": "^3.0.6",
+    "daisyui": "^5.0.43"
   }
 }

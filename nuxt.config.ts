@@ -1,3 +1,5 @@
+import tailwindcss from "@tailwindcss/vite";
+
 export default defineNuxtConfig({
   app: {
     head: {
@@ -8,7 +10,7 @@ export default defineNuxtConfig({
     },
   },
 
-  ssr: false,
+  ssr: true,
 
   css: ["~/assets/css/main.css"],
 
@@ -16,18 +18,31 @@ export default defineNuxtConfig({
 
   devtools: { enabled: true },
 
-  modules: ["@nuxt/ui", "@nuxt/icon", "@pinia/nuxt"],
+  modules: ["@nuxt/icon", "@pinia/nuxt", "@nuxtjs/color-mode"],
+
+  colorMode: {
+		preference: "light",
+		dataValue: "theme",
+		storage: "cookie",
+		storageKey: "theme",
+	},
 
   icon: {
-    customCollections: [{
-      prefix: 'svg',
-      dir: './assets/icons'
-    }]
+    customCollections: [
+      {
+        prefix: "svg",
+        dir: "./assets/icons",
+      },
+    ],
+  },
+
+  vite: {
+    plugins: [tailwindcss()],
   },
 
   runtimeConfig: {
     public: {
-      BASE_API: process.env.BASE_API
-    }
-  }
+      BASE_API: process.env.BASE_API,
+    },
+  },
 });

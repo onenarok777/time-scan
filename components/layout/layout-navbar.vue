@@ -1,19 +1,15 @@
 <template>
-  <div
-    class="h-15 flex items-center p-2 bg-white dark:bg-slate-900 rounded-lg"
-  >
-    <div class="text-xl font-bold flex-1">Navbar</div>
-    <ButtonDarkMode />
-    <UButton
-      class="cursor-pointer lg:hidden"
-      icon="i-lucide-align-justify"
-      size="md"
-      color="neutral"
-      variant="ghost"
+  <div class="h-15 flex gap-2 items-center p-2 bg-base-100 rounded-lg">
+    <div class="text-xl font-bold flex-1">TimeScans</div>
+    <SwitchDarkMode />
+    <div
+      class="lg:hidden cursor-pointer w-10 flex justify-center items-center"
       @click="isOpenDrawer = !isOpenDrawer"
-    />
+    >
+      <Icon name="lucide:menu" size="20" />
+    </div>
   </div>
 </template>
 <script setup lang="ts">
-const isOpenDrawer = defineModel<boolean>("open-drawer", false);
+const isOpenDrawer = defineModel<boolean>({ default: false });
 </script>
