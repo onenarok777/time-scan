@@ -1,8 +1,15 @@
 <template>
   <div
     v-if="isOpenDrawer"
-    class="fixed lg:static h-full w-[250px] rounded-none lg:rounded-lg bg-base-100 shadow-xl lg:shadow-none p-2 z-10"
-  ></div>
+    class="fixed lg:static h-full w-full lg:w-auto z-10 flex"
+  >
+    <div
+      class="min-w-[300px] rounded-none lg:rounded-lg bg-base-100 shadow-xl lg:shadow-none"
+    >
+      asdsad
+    </div>
+    <div class="w-full bg-black/20"></div>
+  </div>
 </template>
 <script setup lang="ts">
 import { useEventListener } from "@vueuse/core";
