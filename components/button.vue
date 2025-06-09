@@ -1,11 +1,11 @@
 <template>
   <button
     :class="[
-      'btn',
+      'btn text-nowrap',
       type,
       variant,
       props.wide && 'btn-wide',
-      props.circle ? 'btn-circle' : 'btn-square',
+      props.circle && 'btn-circle',
       props.block && 'btn-block',
     ]"
   >

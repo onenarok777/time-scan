@@ -1,6 +1,12 @@
 <template>
-  <div class="w-full h-full bg-white dark:bg-slate-900 p-4 rounded-lg">
-    <div v-if="file" class="w-full space-y-4 pb-4"></div>
+  <div class="w-full h-full bg-base-100 p-4 rounded-lg">
+    <div v-if="file" class="w-full h-full flex flex-col gap-4 pb-4">
+      <div class="border-b border-base-200 flex justify-between py-2">
+        <div class="text-sm md:text-base lg:text-lg">รายการเวลาสแกน</div>
+        <Button @click="onSendFile">Upload File</Button>
+      </div>
+      <Table :items="data" />
+    </div>
     <div
       v-else
       class="relative w-full h-full border-2 border-primary bg-primary/10 border-dashed rounded-lg flex justify-center items-center text-primary"
